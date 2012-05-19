@@ -31,8 +31,8 @@ const T& limit(const T& input,const T& lower,const T& uper);
 template<typename WaitPolicy=NoarmalWait>
 class CheckHitKeyMoment{
 public:
-	CheckHitKeyMoment(int KeyID_);
-	bool operator()();
+	CheckHitKeyMoment(const int KeyID_);
+	const bool operator()();
 private:
 	int KeyCounter;
 	int KeyID;
@@ -83,7 +83,7 @@ const T& turara_soft::function::limit(const T& input,const T& lower,const T& upe
 //==============================CheckHitKeyMoment==============================
 //コンストラクタ
 template<typename WaitPolicy>
-turara_soft::function::CheckHitKeyMoment<WaitPolicy>::CheckHitKeyMoment(int KeyID_):
+turara_soft::function::CheckHitKeyMoment<WaitPolicy>::CheckHitKeyMoment(const int KeyID_):
 	KeyID(KeyID_)
 	{
 	KeyCounter=0;
@@ -91,7 +91,7 @@ turara_soft::function::CheckHitKeyMoment<WaitPolicy>::CheckHitKeyMoment(int KeyI
 
 //ファンクタとしてあつかうための()のオーバーロード
 template<typename WaitPolicy>
-bool turara_soft::function::CheckHitKeyMoment<WaitPolicy>::operator ()(){
+const bool turara_soft::function::CheckHitKeyMoment<WaitPolicy>::operator ()(){
 	if( CheckHitKey( KeyID ) == 1 ){
 		if (KeyCounter==0){
 			KeyCounter++;
